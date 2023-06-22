@@ -4,16 +4,21 @@ let url = "https://api.telegram.org/bot5603085243:AAFAyrax39qiK_yQkG3_S0q2EagrcF
 let started = [];
 
 async function getUpdates() {
-	let response = await fetch(url + "getUpdates");
-	let json = await response.json();
-
-	if (json.result.length == 0) {
-		return null;
-	};
-
-	await fetch(url + "getUpdates?offset=" + ( json.result[json.result.length - 1].update_id + 1 ));
+	try {
+		let response = await fetch(url + "getUpdates");
+		let json = await response.json();
 	
-	return json.result;
+		if (json.result.length == 0) {
+			return null;
+		};
+	
+		await fetch(url + "getUpdates?offset=" + ( json.result[json.result.length - 1].update_id + 1 ));
+		
+		return json.result;
+	} catch (err) {
+		console.log(err);
+	}
+
 }
 
 async function sendMessage(id, text) {
