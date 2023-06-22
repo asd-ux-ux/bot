@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 let url = "https://api.telegram.org/bot5603085243:AAFAyrax39qiK_yQkG3_S0q2EagrcFeywYg/";
 let started = [];
