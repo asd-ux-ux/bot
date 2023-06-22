@@ -50,5 +50,3 @@ function sherzod() {
 		}
 	});
 }
-
-setInterval(sherzod, 3500);
